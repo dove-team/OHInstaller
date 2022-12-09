@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OHInstaller", "OHInstaller\OHInstaller.csproj", "{1E28CF43-96F3-4631-87E9-83A4FF5895E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OHInstaller.Libs", "OHInstaller.Libs\OHInstaller.Libs.csproj", "{5AE51294-C723-4D67-A4D2-02BCA2B25ECE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E28CF43-96F3-4631-87E9-83A4FF5895E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E28CF43-96F3-4631-87E9-83A4FF5895E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E28CF43-96F3-4631-87E9-83A4FF5895E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E28CF43-96F3-4631-87E9-83A4FF5895E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AE51294-C723-4D67-A4D2-02BCA2B25ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE51294-C723-4D67-A4D2-02BCA2B25ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE51294-C723-4D67-A4D2-02BCA2B25ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE51294-C723-4D67-A4D2-02BCA2B25ECE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFE91054-561E-4301-858B-E7C979602498}
+	EndGlobalSection
+EndGlobal

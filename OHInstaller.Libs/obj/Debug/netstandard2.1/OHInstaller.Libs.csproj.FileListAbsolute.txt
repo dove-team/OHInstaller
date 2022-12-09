@@ -1,0 +1,10 @@
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\bin\Debug\netstandard2.1\OHInstaller.Libs.deps.json
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\bin\Debug\netstandard2.1\OHInstaller.Libs.dll
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\bin\Debug\netstandard2.1\OHInstaller.Libs.pdb
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\obj\Debug\netstandard2.1\OHInstaller.Libs.csproj.AssemblyReference.cache
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\obj\Debug\netstandard2.1\OHInstaller.Libs.GeneratedMSBuildEditorConfig.editorconfig
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\obj\Debug\netstandard2.1\OHInstaller.Libs.AssemblyInfoInputs.cache
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\obj\Debug\netstandard2.1\OHInstaller.Libs.AssemblyInfo.cs
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\obj\Debug\netstandard2.1\OHInstaller.Libs.csproj.CoreCompileInputs.cache
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\obj\Debug\netstandard2.1\OHInstaller.Libs.dll
+E:\Micha\Documents\GitHub\OHInstaller\OHInstaller.Libs\obj\Debug\netstandard2.1\OHInstaller.Libs.pdb
