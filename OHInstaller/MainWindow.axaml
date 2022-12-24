@@ -5,27 +5,45 @@
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
         x:Class="OHInstaller.MainWindow"
         Title="OHInstaller">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="56" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="56" />
-		</Grid.RowDefinitions>
-		<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-			<Label>请选择安装路径：</Label>
-			<TextBox x:Name="pathBox" Width="200" Height="28" IsReadOnly="True" />
-			<Button Click="SelectHap_Click">...</Button>
-		</StackPanel>
-		<ListView Grid.Row="1">
-			
-		</ListView>
-		<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="2">
-			<Label>驱动安装状态：</Label>
-			<Label x:Name="driveTips" />
-			<HyperlinkButton x:Name="installManager" Content="安装" Click="InstallManager_Click" />
-			<Label>Hdc安装状态：</Label>
-			<Label x:Name="statusTips" />
-			<HyperlinkButton x:Name="installHdc" Content="安装" Click="InstallHdc_Click" />
-		</StackPanel>
-	</Grid>
+	<Border Padding="24">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="56" />
+				<RowDefinition Height="56" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<Label>请选择安装设备：</Label>
+				<ComboBox x:Name="deviceBox" SelectedIndex="0" Items="{Binding Devices}" Width="280">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Name}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+			<StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+				<Label>请选择安装路径：</Label>
+				<TextBox x:Name="pathBox" Width="200" Height="28" IsReadOnly="True"  />
+				<Button Click="SelectHap_Click">...</Button>
+			</StackPanel>
+			<Grid Grid.Row="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="100" />
+				</Grid.ColumnDefinitions>
+				<ListBox Items="{Binding Files}" SelectionChanged="ListBox_SelectionChanged" SelectionMode="Single">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Name}" />
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+				<StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center">
+					<Button Margin="0,20,0,0" IsEnabled="{Binding CanInstall}" Click="InstallHap_Click">安装</Button>
+					<Button Margin="0,20,0,0" IsEnabled="{Binding CanInstall}" Click="ReplaceHap_Click">覆盖安装</Button>
+				</StackPanel>
+			</Grid>
+		</Grid>
+	</Border>
 </AeroWindow>

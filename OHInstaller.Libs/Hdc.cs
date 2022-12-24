@@ -1,16 +1,12 @@
-﻿using PCLUntils.Plantform;
-using PCLUntils;
-using PCLUntils.Untils;
-using System.IO;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using OHInstaller.Libs.Models;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace OHInstaller.Libs
 {
     public sealed class Hdc
     {
-        //https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ide-command-line-sdkmgr-0000001110390078-V3
         private static Hdc instance;
         public static Hdc Instance
         {
@@ -20,30 +16,14 @@ namespace OHInstaller.Libs
                 return instance;
             }
         }
+        public string Root => root;
         private readonly string root;
-        private readonly string manager;
-        private const string DEVICE_LIST = "hdc list targets";
-        private const string INSTALL_HAP = "hdc app install {0}";
-        private const string INSTALL_TOOL = "sdkmgr install toolchains";
+        private const string DEVICE_LIST = "list targets";
+        private const string INSTALL_HAP = "app install {0}";
+        private const string INSTALL_REPLACE_HAP = "app install -r {0}";
         private Hdc()
         {
             root = Path.Combine(Extension.GetRoot(true), "sdk");
-            manager = Path.Combine(Extension.GetRoot(true), "sdk", "manager");
-            DownloadManager.Instance.ProgressComplete += DownloadManager_ProgressComplete;
-        }
-        private async void DownloadManager_ProgressComplete(object sender, bool hasError, Uri address, string filePath)
-        {
-            if (!hasError)
-            {
-                if (address.AbsoluteUri == UrlTools.Instance.WindowsUrl || address.AbsoluteUri == UrlTools.Instance.LinuxUrl || address.AbsoluteUri == UrlTools.Instance.MacUrl)
-                {
-                    await InstallHdc();
-                }
-                else
-                {
-
-                }
-            }
         }
         public bool HasHdc
         {
@@ -53,62 +33,37 @@ namespace OHInstaller.Libs
                 return Directory.Exists(root) && File.Exists(file);
             }
         }
-        public bool HasManager
+        public List<Device> GetDevices()
         {
-            get
+            List<Device> list = new List<Device>();
+            if (DEVICE_LIST.ExecuteShell(out string result))
             {
-                var file = Path.Combine(manager, "bin", "sdkmgr.bat");
-                return Directory.Exists(manager) && File.Exists(file);
-            }
-        }
-        private async Task InstallManager()
-        {
-            var url = string.Empty;
-            switch (PlantformUntils.System)
-            {
-                case Platforms.Windows:
-                    {
-                        url = UrlTools.Instance.WindowsUrl;
-                        break;
-                    }
-                case Platforms.Linux:
-                    {
-                        url = UrlTools.Instance.LinuxUrl;
-                        break;
-                    }
-                case Platforms.MacOS:
-                    {
-                        url = UrlTools.Instance.MacUrl;
-                        break;
-                    }
-            }
-            await DownloadManager.Instance.Create(url).ConfigureAwait(false);
-        }
-        public async Task InstallHdc()
-        {
-            if (HasManager)
-            {
-                switch (PlantformUntils.System)
+                var array = result.Replace("List of targets attached:", "").Split("\r\n");
+                if (array != null && array.Length > 0)
                 {
-                    case Platforms.Windows:
+                    foreach (var device in array)
+                    {
+                        if (!string.IsNullOrEmpty(device))
                         {
-                            if (INSTALL_TOOL.ExecuteShell(out string result))
-                            {
-
-                            }
-                            break;
+                            var model = new Device(device);
+                            list.Add(model);
                         }
+                    }
                 }
             }
-            else
-                await InstallManager();
+            return list;
         }
-        public void InstallHap(string path)
+        public bool InstallHap(string path)
         {
             if (string.Format(INSTALL_HAP, path).ExecuteShell(out string result))
-            {
-
-            }
+                return result.Contains("success", StringComparison.CurrentCultureIgnoreCase);
+            return false;
+        }
+        public bool ReplaceHap(string path)
+        {
+            if (string.Format(INSTALL_REPLACE_HAP, path).ExecuteShell(out string result))
+                return result.Contains("success", StringComparison.CurrentCultureIgnoreCase);
+            return false;
         }
     }
 }
